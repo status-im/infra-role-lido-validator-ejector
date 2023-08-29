@@ -1,0 +1,52 @@
+---
+
+ejector_service_name: 'ejector'
+ejector_service_path: '/docker/{{ ejector_service_name}}'
+ejector_compose_file: '{{ ejector_service_path }}/docker-compose.yml'
+
+
+# container
+ejector_version: '1.2.0'
+ejector_cont_image: 'lidofinance/validator-ejector:{{ ejector_version }}'
+ejector_cont_name: '{{ ejector_service_name }}'
+# ejector_cont_vol: '{{ ejector_service_path }}/app'
+
+#app variables
+ejector_execution_node: http://1.2.3.4:8545
+ejector_consensus_node: http://1.2.3.4:5051
+ejector_locator_address: '0x1eDf09b5023DC86737b59dE68a8130De878984f5'
+ejector_staking_module_id: 1
+ejector_operator_id: 123
+
+# BEWARE!
+# You cannot use `ejector_validator_exit_webhook` or the `ejector_messages_location`
+# at the same time. Only one of the two variables must be set
+ejector_messages_location: 'messages'
+ejector_messages_password: 'password'
+ejector_messages_password_file: ''
+
+# BEWARE!
+# You cannot use `ejector_validator_exit_webhook` or the `ejector_messages_location`
+# at the same time. Only one of the two variables must be set
+ejector_validator_exit_webhook: ''
+
+ejector_oracle_addresses_allowlist: []
+
+ejector_blocks_preload: 50000 # 7 days of blocks
+ejector_blocks_loop: 900
+ejector_job_interval: 384000
+
+ejector_http_port: 8989
+ejector_run_metrics: false
+ejector_run_health_check: true
+
+ejector_logger_level: 'info'
+ejector_logger_format: 'simple'
+ejector_logger_secrets: []
+
+ejector_dry_run: true
+
+# general container management
+compose_recreate: 'smart'
+compose_state: 'present'
+compose_restart: false

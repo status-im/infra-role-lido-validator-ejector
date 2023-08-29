@@ -1,0 +1,18 @@
+---
+galaxy_info:
+  author:
+    - Zahary Karadjov <zahary@status.im>
+    - Kiran Roy <kiran@status.im>
+    - Jakub Sokołowski <jakub@status.im>
+  description: Deploy and setup Lido Validator Ejector
+  company: Status Research & Development GmbH
+  license: MIT
+  min_ansible_version: 1.19
+  platforms:
+  - name: Ubuntu
+    versions:
+    - xenial
+  dependencies:
+    - name: consul-service
+      src: git+git@github.com:status-im/infra-role-consul-service.git
+      scm: git

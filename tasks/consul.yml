@@ -1,0 +1,13 @@
+---
+- name: Create Consul service definition
+  include_role: name=consul-service
+  vars:
+    consul_config_name: '{{ ejector_service_name }}-health'
+    consul_services:
+      - name: '{{ ejector_service_name }}-health'
+        tags: []
+        checks:
+          - id: '{{ ejector_service_name }}-health'
+            name: 'Lido Validator Ejector health'
+            type: 'http'
+            http: 'http://localhost:{{ ejector_http_port }}/health'

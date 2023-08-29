@@ -1,0 +1,15 @@
+---
+- name: EJECTOR | Create compose file directory
+  file:
+    path: '{{ ejector_service_path }}'
+    state: directory
+    owner: 'dockremap'
+    group: 'docker'
+    recurse: true
+# - name: EJECTOR | Create container directory
+#   file:
+#     path: '{{ ejector_cont_vol }}'
+#     state: directory
+#     owner: 'dockremap'
+#     group: 'docker'
+#     recurse: true

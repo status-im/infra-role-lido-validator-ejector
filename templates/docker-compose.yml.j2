@@ -1,0 +1,31 @@
+version: '3.7'
+services:
+  app:
+    image: lidofinance/validator-ejector:{{ ejector_version }}
+    container_name: validator-ejector
+    restart: unless-stopped
+    environment:
+      - EXECUTION_NODE={{ejector_execution_node}}
+      - CONSENSUS_NODE={{ejector_consensus_node}}
+      - LOCATOR_ADDRESS={{ejector_locator_address}}
+      - STAKING_MODULE_ID={{ejector_staking_module_id}}
+      - OPERATOR_ID={{ejector_operator_id}}
+      - MESSAGES_LOCATION={{ejector_messages_location}}
+      - MESSAGES_PASSWORD={{ejector_messages_password}}
+      - MESSAGES_PASSWORD_FILE={{ejector_messages_password_file}}~
+      - VALIDATOR_EXIT_WEBHOOK={{ejector_validator_exit_webhook}}
+      - ORACLE_ADDRESSES_ALLOWLIST={{ejector_oracle_addresses_allowlist}}
+      - BLOCKS_PRELOAD={{ejector_blocks_preload}}
+      - BLOCKS_LOOP={{ ejector_blocks_loop }}
+      - JOB_INTERVAL={{ ejector_job_interval }}
+      - HTTP_PORT={{ejector_http_port}}
+      - RUN_METRICS={{ejector_run_metrics}}
+      - RUN_HEALTH_CHECK={{ejector_run_health_check}}
+      - LOGGER_LEVEL={{ejector_logger_level}}
+      - LOGGER_FORMAT={{ejector_logger_format}}
+      - LOGGER_SECRETS={{ejector_logger_secrets}}
+      - DRY_RUN={{ejector_dry_run}}
+    ports:
+      - '{{ejector_http_port}}:{{ejector_http_port}}'
+    volumes:
+      - ./messages:/app/messages

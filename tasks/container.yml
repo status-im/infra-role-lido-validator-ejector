@@ -1,0 +1,16 @@
+---
+- name: EJECTOR | Create compose file
+  template:
+    src: 'docker-compose.yml.j2'
+    dest: '{{ ejector_compose_file }}'
+    owner: 'dockremap'
+    group: 'docker'
+    mode: 0644
+
+- name: EJECTOR | Create container
+  docker_compose:
+    project_src: '{{ ejector_service_path }}'
+    pull: true
+    state: '{{ compose_state }}'
+    restarted: '{{ compose_restart }}'
+    recreate: '{{ compose_recreate }}'
